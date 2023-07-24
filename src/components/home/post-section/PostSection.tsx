@@ -37,7 +37,7 @@ const PostSection = () => {
                         {post.body}
                     </div>
                     <div className='post-content'>
-                        Author: {post.authorName}
+                       Author: {post.authorName}
                     </div>
                     <div className='post-content'>
                         Posted date: {

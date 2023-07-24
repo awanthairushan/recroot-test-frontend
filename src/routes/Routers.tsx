@@ -4,6 +4,8 @@ import HomePage from "../pages/HomePage";
 import Layout from "../layout/Layout";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
+import AddPost from "../pages/AddPost";
+import Profile from "../pages/Profile";
 export default function Routers() {
     const MainRoutes = {
         path: '/',
@@ -20,6 +22,14 @@ export default function Routers() {
             {
                 path: '/login',
                 element: <Login/>
+            },
+            {
+                path: '/add-post',
+                element: <AddPost/>
+            },
+            {
+                path: '/profile',
+                element: <Profile/>
             }
         ]
     };

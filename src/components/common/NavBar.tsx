@@ -4,10 +4,10 @@ import {NavLink} from "react-router-dom";
 import {AuthContext} from "../../contexts/AuthContext";
 
 const NavBar = () => {
-    const {isLogged, setIsLogged} = useContext(AuthContext)
+    const {isLogged, removeSession} = useContext(AuthContext)
 
     const handleOnLogout = () => {
-      setIsLogged(false)
+      removeSession()
     }
 
     return (
@@ -20,7 +20,8 @@ const NavBar = () => {
             <NavLink to='/home' className='navbar-link'>Home</NavLink>
             {isLogged ? (
                 <>
-                    <NavLink to='/addpost' className='navbar-link'>Add Post</NavLink>
+                    <NavLink to='/add-post' className='navbar-link'>Add Post</NavLink>
+                    <NavLink to='/profile' className='navbar-link'>Profile</NavLink>
                     <div onClick={handleOnLogout} className='navbar-link'>Logout</div>
                 </>
             ) : (

@@ -11,7 +11,7 @@ import {AuthContext} from "../contexts/AuthContext";
 const Login = () => {
         const navigate = useNavigate();
         const {postData} = useContext(DataContext)
-        const {setIsLogged} = useContext(AuthContext)
+        const {removeSession, setSession} = useContext(AuthContext)
         const validationSchema = yup.object({
             username: yup.string().max(255),
             password: yup.string().min(8, 'Password is too short')
@@ -33,7 +33,7 @@ const Login = () => {
                 if (postData) {
                     postData("/api/user/login", data).then((response: any) => {
                         if (response?.status === 200) {
-                            setIsLogged(true)
+                            setSession(response?.data?.data?.userId)
                             navigate('/home')
                         } else {
                             Swal.fire({

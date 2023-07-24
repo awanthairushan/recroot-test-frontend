@@ -1,19 +1,39 @@
-import {createContext, ReactNode, useState} from "react";
-import {DataContextProps} from "../types/types";
+import {createContext, ReactNode, useEffect, useState} from "react";
 
 export const AuthContext = createContext<{
     isLogged: boolean;
-    setIsLogged: (value: boolean) => void;
+    removeSession: () => void;
+    userId: string;
+    setSession: (value: string) => void;
+
 }>({
     isLogged: false,
-    setIsLogged: () => {},
+    removeSession: () => {
+    },
+    userId: "",
+    setSession: () => {
+    }
 });
 
 export const AuthProvider = ({children}: { children: ReactNode }) => {
-    const [isLogged, setIsLogged] = useState<boolean>(false);
+    const [isLogged, setIsLogged] = useState<boolean>(localStorage.getItem("isLoggedIn") === "yes");
+    const [userId, setUserId] = useState<string>(localStorage.getItem("userId") || "");
+
+    const setSession = (newUserId: string) => {
+        localStorage.setItem("isLoggedIn", "yes");
+        localStorage.setItem("userId", newUserId);
+        setIsLogged(true);
+        setUserId(newUserId);
+    }
+    const removeSession = () => {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userId");
+        setIsLogged(false);
+        setUserId("");
+    }
 
     return (
-        <AuthContext.Provider value={{isLogged, setIsLogged}}>
+        <AuthContext.Provider value={{isLogged, removeSession, userId, setSession}}>
             {children}
         </AuthContext.Provider>
     )
