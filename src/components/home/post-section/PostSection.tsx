@@ -13,10 +13,11 @@ const PostSection = () => {
     useEffect(() => {
         const connect = async () => {
             if (getData) {
-                const response: any = await getData('/api/post');
-                if (response?.data?.data) {
-                    setPosts(response?.data?.data)
-                }
+                getData('/api/post').then((response: any) => {
+                    if (response?.data?.data) {
+                        setPosts(response?.data?.data)
+                    }
+                })
             }
         }
         connect();
@@ -28,8 +29,8 @@ const PostSection = () => {
             <div className='post-section-header'>
                 POSTS
             </div>
-            {posts.map((post: PostType) => (
-                <Grid item xs={12} py={2}>
+            {posts.map((post: PostType, index: number) => (
+                <Grid item xs={12} py={2} key={index}>
                     <div className='post-header'>
                         {post.header}
                     </div>

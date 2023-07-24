@@ -15,7 +15,6 @@ const Profile = () => {
         const connect = async () => {
             if (getData) {
                 getData('/api/user/current/' + userId).then((response: any) => {
-                        console.log(response?.data?.data?.user)
                         if (response?.data?.data) {
                             setUserDetails(response?.data?.data?.user)
                         }
