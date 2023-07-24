@@ -1,0 +1,18 @@
+.navbar-section {
+    height: 10vh;
+}
+
+/*navbar*/
+.navbar-section {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-section .navbar-link {
+    color: #ffffff !important;
+    font-family: 'Bai Jamjuree', sans-serif;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
+}
